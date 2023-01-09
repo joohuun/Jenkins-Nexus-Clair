@@ -1,6 +1,6 @@
 def mainDir=""
 def region="ap-northeast-2"
-def nexusUrl="ec2-15-164-164-214.ap-northeast-2.compute.amazonaws.com:5000"
+def nexusUrl="ip-172-31-33-247.ap-northeast-2.compute.internal"
 def repository="test"
 def deployHost="172.31.33.197"
 def tagName="nexus"
