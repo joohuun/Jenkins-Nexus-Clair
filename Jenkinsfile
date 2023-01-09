@@ -1,12 +1,12 @@
-def mainDir="Part2_Docker/Chapter06/3-1_nexus-jenkins-docker"
+def mainDir=""
 def region="ap-northeast-2"
-def nexusUrl="<Nexus VM의 프라이빗 IP DNS 이름>:5443"
-def repository="container-registry"
-def deployHost="<Deploy VM의 프라이빗 IP DNS 이름>"
-def tagName="1.0"
-def nexusid="<Nexus 접근 계정명>"
-def nexuspw="<Nexus 접근 비밀번호>"
-def jenkins_ip="<Jenkins VM의 프라이빗 IP DNS 이름>"
+def nexusUrl="ec2-15-164-164-214.ap-northeast-2.compute.amazonaws.com:5000"
+def repository="test"
+def deployHost="172.31.33.197"
+def tagName="nexus"
+def nexusid="admin"
+def nexuspw="admin"
+def jenkins_ip="172.31.46.116"
 
 pipeline {
     agent any
@@ -30,7 +30,7 @@ pipeline {
                 sh """
                     cd ${mainDir}
                     docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
-                    ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -Djib.console='plain'
+                    ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -DsendCredentialsOverHttp=true -Djib.console='plain'
                 """
             }
         }
