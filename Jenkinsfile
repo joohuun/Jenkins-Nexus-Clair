@@ -39,7 +39,7 @@ pipeline {
                         clair_ip = sh(script: "docker inspect -f '{{ .NetworkSettings.IPAddress }}' clair", returnStdout: true).trim()
                         sh """
                             docker pull ${nexusUrl}/${repository}:${tagName}
-                            clair-scanner --ip 172.17.0.2 --clair='http://${172.17.0.4}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}
+                            clair-scanner --ip 172.17.0.2 --clair='http://${clair_ip}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}
                         """
                     } catch (err) {
                         echo err.getMessage()
