@@ -45,7 +45,8 @@ pipeline {
                             chmod +x clair-scanner_linux_amd64
                             mv clair-scanner_linux_amd64 /usr/local/bin/clair-scanner
                         """
-                        sh "clair-scanner --ip 172.17.0.1 --clair='http://${clair_ip}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}"
+                        // sh "clair-scanner --ip 172.17.0.1 --clair='http://${clair_ip}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}"
+                        sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/Library/Caches:/root/.cache/ aquasec/trivy:0.36.0 image  ${nexusUrl}/${repository}:${tagName}"
                     } catch (err) {
                         echo err.getMessage()
                     }
