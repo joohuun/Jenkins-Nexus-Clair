@@ -1,11 +1,11 @@
 def mainDir=""
 def region="ap-northeast-2"
 def nexusUrl="ip-172-31-33-247.ap-northeast-2.compute.internal:5443"
-def repository="test"
+def repository="container-registry"
 def deployHost="172.31.33.197"
 def tagName="nexus"
-def nexusid="admin"
-def nexuspw="admin"
+def nexusid="test"
+def nexuspw="test"
 def jenkins_ip="172.31.46.116"
 
 pipeline {
