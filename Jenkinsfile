@@ -1,6 +1,6 @@
 def mainDir=""
 def region="ap-northeast-2"
-def nexusUrl="https://ip-172-31-33-247.ap-northeast-2.compute.internal:5443"
+def nexusUrl="ip-172-31-33-247.ap-northeast-2.compute.internal:5443"
 def repository="test"
 def deployHost="172.31.33.197"
 def tagName="nexus"
@@ -27,7 +27,7 @@ pipeline {
         stage('Build Docker Image by Jib & Push to Nexus Registry') {
             steps {
                 sh """
-                    sudo docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
+                    docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
                     ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -Djib.console='plain'
                 """
             }
