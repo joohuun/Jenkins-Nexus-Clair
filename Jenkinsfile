@@ -20,7 +20,6 @@ pipeline {
         stage('Build Codes by Gradle') {
             steps {
                 sh """
-                cd ${mainDir}
                 ./gradlew clean build
                 """
             }
