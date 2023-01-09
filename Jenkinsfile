@@ -52,8 +52,8 @@ pipeline {
             steps{
                 sshagent(credentials : ["deploy-key"]) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${deployHost} \
-                     'docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}; \
-                      docker run -d -p 80:8080 -t ${nexusUrl}/${repository}:${tagName};'"
+                     'sudo docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}; \
+                      sudo docker run -d -p 80:8080 -t ${nexusUrl}/${repository}:${tagName};'"
                 }
             }
         }
