@@ -14,7 +14,7 @@ public class StartApplication {
     public String index(final Model model) {
         model.addAttribute("title", "Docker 활용");
         model.addAttribute("msg", "Docker 빌드 테스트 입니다.");
-        model.addAttribute("msg", "웹훅테스트.");
+        model.addAttribute("msg", "웹훅테스트 입니다.");
         return "index";
     }
 
