@@ -28,7 +28,7 @@ pipeline {
             steps {
                 sh """
                     docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
-                    ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -DsendCredentialsOverHttp=true -Djib.console='plain'
+                    ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -Djib.console='plain'
                 """
             }
         }
