@@ -38,14 +38,14 @@ pipeline {
                     try {
                         clair_ip = sh(script: "docker inspect -f '{{ .NetworkSettings.IPAddress }}' clair", returnStdout: true).trim()
                         sh """
-                            apt udate
+                            apt update
                             apt install -y wget
                             docker pull ${nexusUrl}/${repository}:${tagName}
                             wget https://github.com/arminc/clair-scanner/releases/download/v12/clair-scanner_linux_amd64
-                            chmod +x clair-scanner_linux_amd64;
-                            sudo mv clair-scanner_linux_amd64 /usr/local/bin/clair-scanner
-                            clair-scanner --ip 172.17.0.1 --clair='http://${clair_ip}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}
+                            chmod +x clair-scanner_linux_amd64
+                            mv clair-scanner_linux_amd64 /usr/local/bin/clair-scanner
                         """
+                        sh "clair-scanner --ip 172.17.0.1 --clair='http://${clair_ip}:6060' --log='clair.log' --report='report.txt' ${nexusUrl}/${repository}:${tagName}"
                     } catch (err) {
                         echo err.getMessage()
                     }
