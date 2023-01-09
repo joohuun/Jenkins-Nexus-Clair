@@ -27,7 +27,7 @@ pipeline {
         stage('Build Docker Image by Jib & Push to Nexus Registry') {
             steps {
                 sh """
-                    docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
+                    sudo docker login -u ${nexusid} -p ${nexuspw} ${nexusUrl}
                     ./gradlew jib -Djib.to.image=${nexusUrl}/${repository}:${tagName} -Djib.console='plain'
                 """
             }
