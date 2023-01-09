@@ -1,6 +1,6 @@
 def mainDir=""
 def region="ap-northeast-2"
-def nexusUrl="ip-172-31-33-247.ap-northeast-2.compute.internal"
+def nexusUrl="https://ip-172-31-33-247.ap-northeast-2.compute.internal:5443"
 def repository="test"
 def deployHost="172.31.33.197"
 def tagName="nexus"
